@@ -18,9 +18,8 @@ public class TemperatureSensor extends SensorImpl implements Sensor {
     public TemperatureSensor(double temperature){
         super(temperature);
         
-        Controller c = new Controller();
+        Controller c = new Controller(this);
         this.addPropertyChangeListener("temperature", c);
-
     }
 
     public double getTemperature() {
