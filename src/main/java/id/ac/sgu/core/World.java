@@ -8,8 +8,8 @@ public class World {
     double temperature;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        this.support.addPropertyChangeListener(listener);
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        this.support.addPropertyChangeListener(propertyName, listener);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -18,13 +18,15 @@ public class World {
 
     public void startSensor() {
         Random rand = new Random();
-        
+        TemperatureSensor ts = new TemperatureSensor(0);
+        this.addPropertyChangeListener("temperature", ts);
         Thread t = new Thread(new Runnable() {
             @Override
             public void run(){
                 while(true){
-                    setTemperature(40 * rand.nextDouble());
-                    System.out.println("World: " + 40*rand.nextDouble());
+                    double temp = 40 * rand.nextDouble();
+                    setTemperature(temp);
+                    System.out.println("World: " + temp);
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
@@ -40,10 +42,11 @@ public class World {
         return temperature;
     }
 
-    public void setTemperature(double newValue) {
-        double oldValue = this.temperature;
-        this.temperature = newValue;
-        support.firePropertyChange("value", oldValue, newValue);
+    public void setTemperature(double temperature) {
+        double oldTemperature = this.temperature;
+        double newTemperature = temperature;
+        this.temperature = temperature;
+        support.firePropertyChange("temperature", oldTemperature, newTemperature);
     }
 
     

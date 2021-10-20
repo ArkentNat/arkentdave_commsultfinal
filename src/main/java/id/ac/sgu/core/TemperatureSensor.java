@@ -3,14 +3,22 @@ import java.beans.PropertyChangeEvent;
 
 public class TemperatureSensor extends SensorImpl implements Sensor {
     private double temperature;
+    // private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
+    // public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+    //     this.support.addPropertyChangeListener(propertyName, listener);
+    // }
+
+    // public void removePropertyChangeListener(PropertyChangeListener listener) {
+    //     this.support.removePropertyChangeListener(listener);
+    // }
 
     public TemperatureSensor(double temperature){
         super(temperature);
-        System.out.println("Temperature Sensor: " + temperature);
-        World world = new World();
-        world.addPropertyChangeListener(e ->
-            setTemperature((double) e.getNewValue())
-        );
+        
+        // Controller c = new Controller();
+        // this.addPropertyChangeListener("temperature", c);
+
     }
 
     public double getTemperature() {
@@ -18,9 +26,19 @@ public class TemperatureSensor extends SensorImpl implements Sensor {
     }
 
     public void setTemperature(double temperature) {
+        // double oldTemperature = this.temperature;
+        // double newTemperature = temperature;
         this.temperature = temperature;
+        System.out.println("Test: " + temperature);
+        // support.firePropertyChange("temperature", oldTemperature, newTemperature);
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        // setTemperature(evt.getNewValue());
+        System.out.println("From listener: " + evt.getNewValue());
+        // setTemperature((double) evt.getNewValue());
+    }
 
 
     @Override
