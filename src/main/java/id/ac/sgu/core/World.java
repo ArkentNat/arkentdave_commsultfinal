@@ -2,10 +2,13 @@ package id.ac.sgu.core;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.time.LocalTime;
 import java.util.Random;
 
 public class World {
     double temperature;
+    double wind;
+    LocalTime time;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
@@ -18,14 +21,20 @@ public class World {
 
     public void startSensor() {
         Random rand = new Random();
-        TemperatureSensor ts = new TemperatureSensor(0);
-        this.addPropertyChangeListener("temperature", ts);
+        time = LocalTime.of(0,0);
+        // TemperatureSensor ts = new TemperatureSensor(0);
+        // this.addPropertyChangeListener("temperature", ts);
         Thread t = new Thread(new Runnable() {
             @Override
             public void run(){
                 while(true){
                     double temp = 40 * rand.nextDouble();
+                    double wind = 50 * rand.nextDouble();
                     setTemperature(temp);
+                    setWind(wind);
+                    setTime(time);
+                    time = time.plusHours(1);
+
                     // System.out.println("World: " + temp);
                     try {
                         Thread.sleep(3000);
@@ -49,5 +58,31 @@ public class World {
         support.firePropertyChange("temperature", oldTemperature, newTemperature);
     }
 
+    public double getWind() {
+        return wind;
+    }
+
+    public void setWind(double wind) {
+        double oldWind = this.wind;
+        double newWind = wind;
+        this.wind = wind;
+        support.firePropertyChange("wind", oldWind, newWind);
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        LocalTime oldTime = this.time;
+        LocalTime newTime = time;
+        this.time = time;
+        System.out.println(time);
+        System.out.println(oldTime);
+
+        support.firePropertyChange("time", oldTime, newTime);
+    }
+
+    
     
 }

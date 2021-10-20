@@ -6,6 +6,8 @@ import java.beans.PropertyChangeSupport;
 
 public class Controller implements PropertyChangeListener {
     private TemperatureSensor ts;
+    private WindSensor ws;
+    private TimerSensor tms;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
@@ -17,16 +19,19 @@ public class Controller implements PropertyChangeListener {
     }
 
     public Controller(){};
-    public Controller(TemperatureSensor ts) {
+    public Controller(TemperatureSensor ts, WindSensor ws, TimerSensor tms) {
         this.ts = ts;
-
-        ACActor ac = new ACActor();
-        this.addPropertyChangeListener("temperature", ac);
+        this.ws = ws;
+        this.tms = tms;
+        // ACActor ac = new ACActor();
+        // this.addPropertyChangeListener("temperature", ac);
     }
 
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		// System.out.println("Temperature Controller: " + ts.getTemperature());
+		System.out.println("Temperature Controller: " + ts.getValue());
+        System.out.println("Wind Controller: " + ws.getValue());
+        System.out.println("Timer Controller: " + tms.getTime());
         support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
     }
 }

@@ -3,8 +3,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class TemperatureSensor extends SensorImpl implements Sensor {
-    private double temperature;
+public class WindSensor extends SensorImpl implements Sensor{
+    private double wind;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     // public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
@@ -15,28 +15,17 @@ public class TemperatureSensor extends SensorImpl implements Sensor {
     //     this.support.removePropertyChangeListener(listener);
     // }
 
-    public TemperatureSensor(double temperature){
-        super(temperature);
+    public WindSensor(double wind){
+        super(wind);
     }
 
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(double temperature) {
-        double oldTemperature = this.temperature;
-        double newTemperature = temperature;
-        this.temperature = temperature;
-        // System.out.println("Test: " + temperature);
-        support.firePropertyChange("temperature", oldTemperature, newTemperature);
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // setTemperature(evt.getNewValue());
         // System.out.println("From listener: " + evt.getNewValue());
         // setTemperature((double) evt.getNewValue());
-        setValue("temperature", (double)evt.getNewValue());
+        setValue("wind", (double)evt.getNewValue());
         // support.firePropertyChange("temperature", evt.getNewValue(), evt.getOldValue());
 
     }
