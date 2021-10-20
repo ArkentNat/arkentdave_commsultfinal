@@ -1,4 +1,4 @@
-package id.ac.sgu;
+package id.ac.sgu.core;
 
 public class Runner {
     public static void main(String[] args){

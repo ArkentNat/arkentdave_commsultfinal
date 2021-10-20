@@ -1,4 +1,4 @@
-package id.ac.sgu;
+package id.ac.sgu.core;
 import java.beans.PropertyChangeEvent;
 
 public class TemperatureSensor extends SensorImpl implements Sensor {

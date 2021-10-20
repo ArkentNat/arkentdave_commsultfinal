@@ -1,4 +1,4 @@
-package id.ac.sgu;
+package id.ac.sgu.core;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
