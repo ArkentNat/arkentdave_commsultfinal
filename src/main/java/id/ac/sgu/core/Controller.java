@@ -13,6 +13,6 @@ public class Controller implements PropertyChangeListener {
 
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println("Temperature: " + evt.getNewValue() + "\n");
+		System.out.println("Temperature Controller: " + evt.getNewValue());
     }
 }

@@ -26,7 +26,7 @@ public class World {
                 while(true){
                     double temp = 40 * rand.nextDouble();
                     setTemperature(temp);
-                    System.out.println("World: " + temp);
+                    // System.out.println("World: " + temp);
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
