@@ -1,34 +1,30 @@
 package id.ac.sgu.ui;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class HomeUI extends Application {
 	
-	private static Stage window;
-	Scene homeScreen;
+	private Stage window;
 	
+	public static void main(String[] args) {
+		launch(args);
+	}
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
 		
-		AppBar appbar = new AppBar();
-		
-		VBox layout2 = new VBox(20);
-		layout2.getChildren().addAll(appbar);
-		homeScreen = new Scene(layout2, 960, 480);
-		
-		window.setScene(homeScreen);
+		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+		window.setTitle("HomeUI");
+		window.setScene(new Scene(root, 960, 480));
 		window.show();
 		
-		window.setOnCloseRequest(e -> {
-			e.consume();
-			closeWindowAffirmation();
-		});
-		
+		window.setOnCloseRequest(e -> closeWindowAffirmation());
 	}
 	
 	private void closeWindowAffirmation() {

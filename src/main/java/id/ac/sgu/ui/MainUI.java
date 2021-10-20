@@ -3,7 +3,9 @@ package id.ac.sgu.ui;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,7 +22,7 @@ import javafx.stage.Stage;
 public class MainUI extends Application {
 	
 	Stage window;
-	Scene startScreen, homeScreen;
+
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -28,31 +30,14 @@ public class MainUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		Scene startScreen, homeScreen;
 		window = primaryStage;
-
-			
+	
 		//Layout 1 - Start Screen
-		ImageView home = new ImageView(getClass().getResource("./assets/home.png").toExternalForm());
-		home.setFitHeight(50);
-		home.setPreserveRatio(true);
-		Label label1= new Label("Arkent Dave Home Controller");
-		label1.setFont(new Font("Arial", 40));
+		Parent root = FXMLLoader.load(getClass().getResource("view/MainUI.fxml"));
 		
-		Button button1 = new Button("Start Application");
-		button1.setFont(new Font("Arial", 30));
-		button1.setOnAction(e -> {
-			window.setScene(homeScreen);
-		});
-		
-		VBox outerContainer = new VBox(40);
-		VBox columnContainer = new VBox(10);
-		columnContainer.getChildren().addAll(home, label1);
-		
-		outerContainer.getChildren().addAll(columnContainer, button1);
-		columnContainer.setAlignment(Pos.CENTER);
-		outerContainer.setAlignment(Pos.CENTER);
-		startScreen = new Scene(outerContainer, 960, 480);
-		
+		startScreen = new Scene(root, 960, 480);
+
 		//Layout 2 - Home Scene
 		AppBar appbar = new AppBar();
 		
@@ -70,7 +55,7 @@ public class MainUI extends Application {
 		checkSensorButton.setWrapText(true);
 		checkSensorButton.setMinWidth(270);
 		checkSensorButton.setMaxSize(500, 300);
-		checkSensorButton.setMinHeight(70);
+		checkSensorButton.setMinHeight(100);
 		
 		Button checkAppliancesButton = new Button();
 		checkAppliancesButton.setText("Check Appliances Status");
@@ -125,6 +110,10 @@ public class MainUI extends Application {
 			closeWindowAffirmation();
 		})
 ;
+	}
+	
+	public Stage getWindow() {
+		return this.window;
 	}
 	
 	private void closeWindowAffirmation() {
