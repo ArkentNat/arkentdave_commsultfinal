@@ -14,7 +14,6 @@ public class SensorImpl implements PropertyChangeListener {
     }
 
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-        System.out.println("Listener added");
         this.support.addPropertyChangeListener(propertyName, listener);
     }
 

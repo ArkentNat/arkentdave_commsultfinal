@@ -3,15 +3,19 @@ package id.ac.sgu.core;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.text.DecimalFormat;
 
 public class Controller implements PropertyChangeListener {
     private TemperatureSensor ts;
     private WindSensor ws;
     private TimerSensor tms;
+    DecimalFormat df = new DecimalFormat("#.#");
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         this.support.addPropertyChangeListener(propertyName, listener);
+    
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -29,9 +33,11 @@ public class Controller implements PropertyChangeListener {
 
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println("Temperature Controller: " + ts.getValue());
-        System.out.println("Wind Controller: " + ws.getValue());
+		System.out.println("Temperature Controller: " + df.format(ts.getValue()));
+        System.out.println("Wind Controller: " + df.format(ws.getValue()));
         System.out.println("Timer Controller: " + tms.getTime());
         support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
+        support.firePropertyChange("time", tms.getTime().minusHours(1), tms.getTime());
     }
+
 }

@@ -8,11 +8,13 @@ public class Runner {
         WindSensor ws = new WindSensor(0);
         TimerSensor tms = new TimerSensor(LocalTime.of(0,0));
         ACActor ac = new ACActor();
+        BlindActor bc = new BlindActor();
         Controller c = new Controller(ts, ws, tms);
         ts.addPropertyChangeListener("temperature", c);
         c.addPropertyChangeListener("temperature", ac);
         ws.addPropertyChangeListener("wind", c);
         tms.addPropertyChangeListener("time", c);
+        c.addPropertyChangeListener("time", bc);
         World w = new World();
         w.addPropertyChangeListener("temperature", ts);
         w.addPropertyChangeListener("wind", ws);

@@ -18,6 +18,7 @@ public class ACActor implements PropertyChangeListener{
 
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
+        System.out.print(evt);
         if((double) evt.getNewValue() > 20) {
             System.out.println("Temperature Actor: " + evt.getNewValue() + " :  AC Closed.");
         }

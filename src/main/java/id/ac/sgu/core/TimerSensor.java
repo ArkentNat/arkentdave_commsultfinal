@@ -38,10 +38,11 @@ public class TimerSensor implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // setTemperature(evt.getNewValue());
+        System.out.println("Timer evt:" + evt);
         System.out.println("From listener: " + evt.getNewValue());
         // setTemperature((double) evt.getNewValue());
         setTime((LocalTime)evt.getNewValue());
-        // support.firePropertyChange("time", evt.getNewValue(), evt.getOldValue());
+        // support.firePropertyChange("time", evt.getOldValue(), evt.getNewValue());
 
     }
 

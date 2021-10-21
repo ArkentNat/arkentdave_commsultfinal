@@ -30,10 +30,10 @@ public class World {
                 while(true){
                     double temp = 40 * rand.nextDouble();
                     double wind = 50 * rand.nextDouble();
+                    time = time.plusHours(1);
                     setTemperature(temp);
                     setWind(wind);
                     setTime(time);
-                    time = time.plusHours(1);
 
                     // System.out.println("World: " + temp);
                     try {
@@ -74,7 +74,7 @@ public class World {
     }
 
     public void setTime(LocalTime time) {
-        LocalTime oldTime = this.time;
+        LocalTime oldTime = this.time.minusHours(1);
         LocalTime newTime = time;
         this.time = time;
         System.out.println(time);
@@ -82,7 +82,4 @@ public class World {
 
         support.firePropertyChange("time", oldTime, newTime);
     }
-
-    
-    
 }
