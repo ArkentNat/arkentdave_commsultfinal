@@ -21,8 +21,11 @@ import javafx.stage.Stage;
 
 public class MainUI extends Application {
 	
-	Stage window;
-
+	static Stage window;
+	
+	public static Stage getStage() {
+		return window;
+	}
 	
 	public static void main(String[] args) {
 		launch(args);

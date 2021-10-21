@@ -22,7 +22,7 @@
          <top>
             <ToolBar prefHeight="46.0" prefWidth="958.0" BorderPane.alignment="CENTER">
                <items>
-                  <Label text="Current Time">
+                  <Label fx:id="currentTime" text="Current Time">
                      <font>
                         <Font size="16.0" />
                      </font>
