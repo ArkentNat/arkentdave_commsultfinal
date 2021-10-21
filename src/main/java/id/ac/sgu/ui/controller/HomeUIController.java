@@ -18,13 +18,31 @@ public class HomeUIController {
 		
 		switch(buttonID) {
 		case "checkSensorButton":
-			System.out.println("Go to sensor page!");
+			Parent sensorStatusView = FXMLLoader.load(getClass().getResource("../view/SensorStatus.fxml"));
+			Scene sensorStatusScene = new Scene(sensorStatusView);
+			
+			Stage sensorWindow = (Stage)((Node) event.getSource()).getScene().getWindow();
+			
+			sensorWindow.setScene(sensorStatusScene);
+			sensorWindow.show();
 			break;
 		case "checkAppliancesButton":
-			System.out.println("Go to appliances page!");
+			Parent appliancesStatusView = FXMLLoader.load(getClass().getResource("../view/AppliancesStatus.fxml"));
+			Scene appliancesStatusScene = new Scene(appliancesStatusView);
+			
+			Stage appliancesWindow = (Stage)((Node) event.getSource()).getScene().getWindow();
+			
+			appliancesWindow.setScene(appliancesStatusScene);
+			appliancesWindow.show();
 			break;
 		case "showLogButton":
-			System.out.println("Go to show log page!");
+			Parent logView = FXMLLoader.load(getClass().getResource("../view/Log.fxml"));
+			Scene logViewScene = new Scene(logView);
+			
+			Stage logWindow = (Stage)((Node) event.getSource()).getScene().getWindow();
+			
+			logWindow.setScene(logViewScene);
+			logWindow.show();
 			break;
 		case "settingsButton":
 			System.out.println("Go to settings page!");
