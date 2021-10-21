@@ -78,4 +78,8 @@ public class HomeUIController implements Initializable {
 	public Label getCurrentTimeLabel() {
 		return currentTime;
 	}
+	
+	public void setText(String text) {
+		this.currentTime.setText(text);
+	}
 }
