@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.text.DecimalFormat;
+import java.time.LocalTime;
 
 public class Controller implements PropertyChangeListener {
     private TemperatureSensor ts;
@@ -36,8 +37,12 @@ public class Controller implements PropertyChangeListener {
 		System.out.println("Temperature Controller: " + df.format(ts.getValue()));
         System.out.println("Wind Controller: " + df.format(ws.getValue()));
         System.out.println("Timer Controller: " + tms.getTime());
-        support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
-        support.firePropertyChange("time", tms.getTime().minusHours(1), tms.getTime());
+        
+        if (evt.getNewValue() instanceof LocalTime) {
+            support.firePropertyChange("time", tms.getTime().minusHours(1), tms.getTime());
+        } else {
+            support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
+        }
     }
 
 }
