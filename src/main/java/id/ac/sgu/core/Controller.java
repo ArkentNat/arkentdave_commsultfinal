@@ -5,6 +5,12 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.text.DecimalFormat;
 
+import id.ac.sgu.core.Actor.ACActor;
+import id.ac.sgu.core.Actor.BlindActor;
+import id.ac.sgu.core.Sensor.TemperatureSensor;
+import id.ac.sgu.core.Sensor.TimerSensor;
+import id.ac.sgu.core.Sensor.WindSensor;
+
 public class Controller implements PropertyChangeListener {
     private TemperatureSensor ts;
     private WindSensor ws;
@@ -45,8 +51,8 @@ public class Controller implements PropertyChangeListener {
 
         }
         
-        // support.fireIndexedPropertyChange("time", 0, tms.getTime().minusHours(1), tms.getTime());
-        // support.fireIndexedPropertyChange("temperature", 2, evt.getOldValue(), evt.getNewValue());
+        // support.firePropertyChange("time", tms.getTime().minusHours(1), tms.getTime());
+        // support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
         
     }
 

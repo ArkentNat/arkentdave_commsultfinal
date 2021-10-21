@@ -10,7 +10,6 @@ public class World {
     double wind;
     LocalTime time;
 
-
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
@@ -31,10 +30,10 @@ public class World {
                 while(true){
                     double temp = 40 * rand.nextDouble();
                     double wind = 50 * rand.nextDouble();
-                    time = time.plusHours(1);
                     setTemperature(temp);
                     setWind(wind);
                     setTime(time);
+                    time = time.plusHours(1);
 
                     try {
                         Thread.sleep(3000);
@@ -56,7 +55,7 @@ public class World {
         double oldTemperature = this.temperature;
         double newTemperature = temperature;
         this.temperature = temperature;
-        support.fireIndexedPropertyChange("temperature", 0, oldTemperature, newTemperature);
+        support.firePropertyChange("temperature", oldTemperature, newTemperature);
     }
 
     public double getWind() {
@@ -67,7 +66,7 @@ public class World {
         double oldWind = this.wind;
         double newWind = wind;
         this.wind = wind;
-        support.fireIndexedPropertyChange("wind", 1, oldWind, newWind);
+        support.firePropertyChange("wind", oldWind, newWind);
     }
 
     public LocalTime getTime() {
@@ -79,6 +78,6 @@ public class World {
         LocalTime newTime = time;
         this.time = time;
 
-        support.fireIndexedPropertyChange("time", 2, oldTime, newTime);
+        support.firePropertyChange("time", oldTime, newTime);
     }
 }

@@ -1,4 +1,4 @@
-package id.ac.sgu.core;
+package id.ac.sgu.core.Sensor;
 import java.text.DecimalFormat;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -25,10 +25,10 @@ public class SensorImpl implements PropertyChangeListener {
         return value;
     }
 
-    public void setValue(String property, int index, double newValue) {
+    public void setValue(String property, double newValue) {
         double oldValue = this.value;
         this.value = newValue;
-        support.fireIndexedPropertyChange(property, index, oldValue, newValue);
+        support.firePropertyChange(property, oldValue, newValue);
     }
 
     @Override

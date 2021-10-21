@@ -1,4 +1,4 @@
-package id.ac.sgu.core;
+package id.ac.sgu.core.Sensor;
 import java.beans.PropertyChangeEvent;
 
 public class TemperatureSensor extends SensorImpl {
@@ -9,7 +9,7 @@ public class TemperatureSensor extends SensorImpl {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        setValue("temperature", 0,(double)evt.getNewValue());
+        setValue("temperature", (double)evt.getNewValue());
         // support.firePropertyChange("temperature", evt.getNewValue(), evt.getOldValue());
 
     }

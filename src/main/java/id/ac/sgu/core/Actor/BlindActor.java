@@ -1,8 +1,9 @@
-package id.ac.sgu.core;
+package id.ac.sgu.core.Actor;
 
 import java.time.LocalTime;
 
 public class BlindActor {
+    
     public String detect(LocalTime time) {
         int value = time.compareTo(LocalTime.of(12,0));
 

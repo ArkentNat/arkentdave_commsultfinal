@@ -1,4 +1,4 @@
-package id.ac.sgu.core;
+package id.ac.sgu.core.Sensor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -26,15 +26,15 @@ public class TimerSensor implements PropertyChangeListener {
         return time;
     }
 
-    public void setTime(LocalTime newTime) {
-        LocalTime oldTime = this.time;
+    public void setTime( LocalTime oldTime, LocalTime newTime) {
+        // LocalTime oldTime = this.time;
         this.time = newTime;
-        support.fireIndexedPropertyChange("time", 2, oldTime, newTime);
+        support.firePropertyChange("time", oldTime, newTime);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        setTime((LocalTime)evt.getNewValue());
+        setTime((LocalTime)evt.getOldValue(), (LocalTime)evt.getNewValue());
         // support.firePropertyChange("time", evt.getOldValue(), evt.getNewValue());
     }
 

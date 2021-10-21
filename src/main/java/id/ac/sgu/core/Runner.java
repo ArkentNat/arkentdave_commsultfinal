@@ -2,6 +2,10 @@ package id.ac.sgu.core;
 
 import java.time.LocalTime;
 
+import id.ac.sgu.core.Sensor.TemperatureSensor;
+import id.ac.sgu.core.Sensor.TimerSensor;
+import id.ac.sgu.core.Sensor.WindSensor;
+
 public class Runner {
     public static void main(String[] args){
         TemperatureSensor ts = new TemperatureSensor(0);

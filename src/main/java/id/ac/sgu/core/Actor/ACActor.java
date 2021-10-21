@@ -1,4 +1,4 @@
-package id.ac.sgu.core;
+package id.ac.sgu.core.Actor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
