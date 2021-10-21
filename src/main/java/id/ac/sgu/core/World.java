@@ -9,6 +9,8 @@ public class World {
     double temperature;
     double wind;
     LocalTime time;
+
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
@@ -22,8 +24,7 @@ public class World {
     public void startSensor() {
         Random rand = new Random();
         time = LocalTime.of(0,0);
-        // TemperatureSensor ts = new TemperatureSensor(0);
-        // this.addPropertyChangeListener("temperature", ts);
+
         Thread t = new Thread(new Runnable() {
             @Override
             public void run(){
@@ -35,7 +36,6 @@ public class World {
                     setWind(wind);
                     setTime(time);
 
-                    // System.out.println("World: " + temp);
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
@@ -51,11 +51,12 @@ public class World {
         return temperature;
     }
 
+
     public void setTemperature(double temperature) {
         double oldTemperature = this.temperature;
         double newTemperature = temperature;
         this.temperature = temperature;
-        support.firePropertyChange("temperature", oldTemperature, newTemperature);
+        support.fireIndexedPropertyChange("temperature", 0, oldTemperature, newTemperature);
     }
 
     public double getWind() {
@@ -66,7 +67,7 @@ public class World {
         double oldWind = this.wind;
         double newWind = wind;
         this.wind = wind;
-        support.firePropertyChange("wind", oldWind, newWind);
+        support.fireIndexedPropertyChange("wind", 1, oldWind, newWind);
     }
 
     public LocalTime getTime() {
@@ -77,9 +78,7 @@ public class World {
         LocalTime oldTime = this.time.minusHours(1);
         LocalTime newTime = time;
         this.time = time;
-        System.out.println(time);
-        System.out.println(oldTime);
 
-        support.firePropertyChange("time", oldTime, newTime);
+        support.fireIndexedPropertyChange("time", 2, oldTime, newTime);
     }
 }

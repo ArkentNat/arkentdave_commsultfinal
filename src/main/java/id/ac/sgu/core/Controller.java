@@ -4,12 +4,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.text.DecimalFormat;
-import java.time.LocalTime;
 
 public class Controller implements PropertyChangeListener {
     private TemperatureSensor ts;
     private WindSensor ws;
     private TimerSensor tms;
+    private ACActor ac = new ACActor();
+    private BlindActor bc = new BlindActor();
     DecimalFormat df = new DecimalFormat("#.#");
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -28,21 +29,25 @@ public class Controller implements PropertyChangeListener {
         this.ts = ts;
         this.ws = ws;
         this.tms = tms;
-        // ACActor ac = new ACActor();
-        // this.addPropertyChangeListener("temperature", ac);
     }
 
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println("Temperature Controller: " + df.format(ts.getValue()));
-        System.out.println("Wind Controller: " + df.format(ws.getValue()));
-        System.out.println("Timer Controller: " + tms.getTime());
-        
-        if (evt.getNewValue() instanceof LocalTime) {
-            support.firePropertyChange("time", tms.getTime().minusHours(1), tms.getTime());
+
+        if(evt.getPropertyName() == "temperature"){
+            System.out.println("Temperature Controller: " + df.format(ts.getValue()) + " || " + ac.detect(ts.getValue()));
+        } 
+        else if (evt.getPropertyName() == "wind"){
+            System.out.println("Wind Controller: " + df.format(ws.getValue()));
         } else {
-            support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
+            System.out.println("Timer Controller: " + tms.getTime() + " || " + bc.detect(tms.getTime()));
+            System.out.println("_____________________________________________\n");
+
         }
+        
+        // support.fireIndexedPropertyChange("time", 0, tms.getTime().minusHours(1), tms.getTime());
+        // support.fireIndexedPropertyChange("temperature", 2, evt.getOldValue(), evt.getNewValue());
+        
     }
 
 }

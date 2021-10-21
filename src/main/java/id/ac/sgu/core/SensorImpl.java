@@ -25,11 +25,10 @@ public class SensorImpl implements PropertyChangeListener {
         return value;
     }
 
-    public void setValue(String property, double newValue) {
-        // System.out.println(property + " " + newValue + " " + this.value);
+    public void setValue(String property, int index, double newValue) {
         double oldValue = this.value;
         this.value = newValue;
-        support.firePropertyChange(property, oldValue, newValue);
+        support.fireIndexedPropertyChange(property, index, oldValue, newValue);
     }
 
     @Override
