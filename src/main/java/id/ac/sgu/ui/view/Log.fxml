@@ -43,7 +43,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="210.0" prefWidth="960.0" spacing="30.0">
                            <children>
-                              <TextArea prefHeight="224.0" prefWidth="814.0" promptText="--LOG HERE--" editable="false">
+                              <TextArea fx:id="logTextArea" prefHeight="224.0" prefWidth="814.0" promptText="--LOG HERE--" editable="false">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
