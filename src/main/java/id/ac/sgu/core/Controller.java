@@ -62,7 +62,7 @@ public class Controller implements PropertyChangeListener {
         } else {
             System.out.println("Timer Controller: " + tms.getTime() + " || " + bc.detect(tms.getTime()));
             System.out.println("_____________________________________________\n");
-            currentTime.setText(tms.getTime().toString());
+            //currentTime.setText(tms.getTime().toString());
             setTime(tms.getTime());
             setBlinderStatus(bc.detect(tms.getTime()));
         }

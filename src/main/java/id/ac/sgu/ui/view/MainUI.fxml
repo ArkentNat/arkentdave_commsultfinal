@@ -19,11 +19,12 @@
          <children>
             <VBox alignment="CENTER" prefHeight="127.0" prefWidth="600.0">
                <children>
-                  <Label text="Arkent Dave Home Control" textFill="#f7f7f7">
+                  <Label text="Homey" textFill="#f7f7f7">
                      <font>
-                        <Font name="Fira Code Regular" size="32.0" />
+                        <Font name="Fira Code Regular" size="52.0" />
                      </font>
                   </Label>
+                  <Label text="Your Personal Home Controller" textFill="#d7cdcd" />
                </children>
             </VBox>
             <Button fx:id="button" onAction="#handleButtonClick" prefHeight="19.0" prefWidth="122.0" style="-fx-border-radius: 15px; -fx-background-radius: 30;" text="Enter">
