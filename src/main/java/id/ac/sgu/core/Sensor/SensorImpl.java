@@ -1,12 +1,10 @@
 package id.ac.sgu.core.Sensor;
-import java.text.DecimalFormat;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class SensorImpl implements PropertyChangeListener {
     private double value;
-    DecimalFormat df = new DecimalFormat("#.#");
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public SensorImpl(double value){

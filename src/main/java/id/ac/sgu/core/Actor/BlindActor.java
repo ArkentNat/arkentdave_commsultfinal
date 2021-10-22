@@ -8,19 +8,10 @@ public class BlindActor {
         int value = time.compareTo(LocalTime.of(12,0));
 
         if(value > 0) {
-            return "Blind is Closed";
+            return "Blind Closed";
         }
         else {
-            return "Blind is Opened";
+            return "Blind Opened";
         }
     }
 }
-
-// public class BlindActor implements PropertyChangeListener{
-
-//     @Override
-// 	public void propertyChange(PropertyChangeEvent evt) {
-//         System.out.println(evt);
-//         System.out.println("Blind Actor: " + evt.getNewValue());
-//     }
-// }

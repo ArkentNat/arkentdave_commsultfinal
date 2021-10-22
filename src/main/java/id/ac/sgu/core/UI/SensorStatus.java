@@ -19,14 +19,19 @@ import javax.swing.border.TitledBorder;
 import id.ac.sgu.core.Actor.ACActor;
 import id.ac.sgu.core.Actor.BlindActor;
 
+import java.text.DecimalFormat;
+
 
 public class SensorStatus implements PropertyChangeListener{
     JFrame frame;
     JTextArea logTextArea;
     JLabel title;
+    JLabel acLabel;
+    JLabel blindLabel;
     private String currentTimeString;
     private ACActor ac = new ACActor();
     private BlindActor bc = new BlindActor();
+    DecimalFormat df = new DecimalFormat("#.#");
 
     public SensorStatus() {
 
@@ -35,10 +40,12 @@ public class SensorStatus implements PropertyChangeListener{
         title.setBounds(450,10, 200, 100);
         Font labelFont = title.getFont();
         title.setFont(new Font(labelFont.getName(), Font.PLAIN, 20));
-
         
-        JLabel acLabel = new JLabel("Air Conditioner: ");
-        acLabel.setBounds(20,100, 100,20);
+        acLabel = new JLabel("Air Conditioner: ");
+        acLabel.setBounds(20,100, 170,20);
+
+        blindLabel = new JLabel("Blind Window: ");
+        blindLabel.setBounds(20,140,170,20);
 
         
         JPanel middlePanel=new JPanel();
@@ -67,8 +74,7 @@ public class SensorStatus implements PropertyChangeListener{
         frame.add(acLabel);
         frame.add(title);
         frame.add(middlePanel);
-        
-
+        frame.add(blindLabel);
         
     }
     
@@ -83,33 +89,15 @@ public class SensorStatus implements PropertyChangeListener{
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName() == "temperature"){
-            // setAC((double) evt.getNewValue());
-            logData("Temperature: " + evt.getNewValue() + " C || AC STATUS: " + ac.detect((double)evt.getNewValue()));
+            logData("Temperature: " + df.format(evt.getNewValue()) + " C || AC STATUS: " + ac.detect((double)evt.getNewValue()));
+            acLabel.setText("AC Status: " + ac.detect((double)evt.getNewValue()));
         } 
         else if (evt.getPropertyName() == "wind"){
-            // setWind((double) evt.getNewValue());
-            logData("\nWind: " + evt.getNewValue() + " kph");
+            logData("\nWind: " + df.format(evt.getNewValue()) + " kph");
         } else {
-            // setBlinder((LocalTime) evt.getNewValue());
             setCurrentTimeString((LocalTime) evt.getNewValue());
             logData("\nTime: " + evt.getNewValue() + " || BLINDER STATUS: " + bc.detect((LocalTime)evt.getNewValue()) + "\n\n");
+            blindLabel.setText("Blind Status: " + bc.detect((LocalTime)evt.getNewValue()));
         }        
     }
-
-    // public void setAC(double newTemperature){
-    //     jLabel6.setText(ac.detect(newTemperature));
-    //     jTextArea1.setText("Temperature: " + newTemperature + " C || AC STATUS: " + ac.detect(newTemperature));
-    // }
-
-    // public void setBlinder(LocalTime time) {
-    //     jLabel7.setText(bc.detect(time));
-    //     jLabel1.setText("Time: " + time.toString() + " || BLINDER STATUS: " + bc.detect(time));
-    //     jLabel1.setText("____________________________________________________________");
-
-    // }
-
-    // public void setWind(double wind) {
-    //     jTextArea1.setText("Wind: " + wind + " kph");
-    // }
-    
 }

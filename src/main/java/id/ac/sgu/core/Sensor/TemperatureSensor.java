@@ -10,8 +10,6 @@ public class TemperatureSensor extends SensorImpl {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         setValue("temperature", (double)evt.getNewValue());
-        // support.firePropertyChange("temperature", evt.getNewValue(), evt.getOldValue());
-
     }
     
 }

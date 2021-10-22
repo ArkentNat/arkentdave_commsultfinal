@@ -11,8 +11,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
 import java.time.LocalTime;
-import java.util.Observable;
-import java.util.Observer;
 
 public class HomeUI implements PropertyChangeListener{
     private JLabel value1;

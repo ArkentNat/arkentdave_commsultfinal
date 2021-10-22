@@ -27,7 +27,6 @@ public class TimerSensor implements PropertyChangeListener {
     }
 
     public void setTime( LocalTime oldTime, LocalTime newTime) {
-        // LocalTime oldTime = this.time;
         this.time = newTime;
         support.firePropertyChange("time", oldTime, newTime);
     }
@@ -35,8 +34,5 @@ public class TimerSensor implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         setTime((LocalTime)evt.getOldValue(), (LocalTime)evt.getNewValue());
-        // support.firePropertyChange("time", evt.getOldValue(), evt.getNewValue());
     }
-
-    
 }

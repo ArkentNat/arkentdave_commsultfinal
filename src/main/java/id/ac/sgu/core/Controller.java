@@ -18,11 +18,6 @@ public class Controller implements PropertyChangeListener {
     private TimerSensor tms;
     private ACActor ac = new ACActor();
     private BlindActor bc = new BlindActor();
-    private double temperature;
-    private double wind;
-    private LocalTime time;
-    private String acStatus;
-    private String blinderStatus;
     DecimalFormat df = new DecimalFormat("#.#");
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -48,65 +43,12 @@ public class Controller implements PropertyChangeListener {
 
         if(evt.getPropertyName() == "temperature"){
             System.out.println("Temperature Controller: " + df.format(ts.getValue()) + " || " + ac.detect(ts.getValue()));
-            setTemperature(ts.getValue());
-            setAcStatus(ac.detect(ts.getValue()));
         } 
         else if (evt.getPropertyName() == "wind"){
             System.out.println("Wind Controller: " + df.format(ws.getValue()));
-            setWind(ws.getValue());
         } else {
             System.out.println("Timer Controller: " + tms.getTime() + " || " + bc.detect(tms.getTime()));
             System.out.println("_____________________________________________\n");
-            setTime(tms.getTime());
-            setBlinderStatus(bc.detect(tms.getTime()));
         }
-        
-        // support.firePropertyChange("time", tms.getTime().minusHours(1), tms.getTime());
-        // support.firePropertyChange("temperature", evt.getOldValue(), evt.getNewValue());
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
-
-    public double getWind() {
-        return wind;
-    }
-
-    public void setWind(double wind) {
-        this.wind = wind;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    public String getAcStatus() {
-        return acStatus;
-    }
-
-    public void setAcStatus(String acStatus) {
-        this.acStatus = acStatus;
-    }
-
-    public String getBlinderStatus() {
-        return blinderStatus;
-    }
-
-    public void setBlinderStatus(String blinderStatus) {
-        this.blinderStatus = blinderStatus;
-    }
-
-    
-
-    
-
+    } 
 }

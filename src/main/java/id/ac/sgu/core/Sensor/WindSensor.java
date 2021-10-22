@@ -10,8 +10,6 @@ public class WindSensor extends SensorImpl {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         setValue("wind", (double)evt.getNewValue());
-        // support.firePropertyChange("temperature", evt.getNewValue(), evt.getOldValue());
-
     }
     
 }
