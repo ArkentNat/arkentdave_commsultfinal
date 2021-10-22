@@ -11,12 +11,13 @@ import javafx.stage.Stage;
 
 public class MainUIController {
 	public void handleButtonClick(ActionEvent event) throws Exception {
-		Parent homeView = FXMLLoader.load(getClass().getResource("../view/HomeUI.fxml"));
-		Scene homeViewScene = new Scene(homeView);
+		Parent homeUIView = FXMLLoader.load(getClass().getResource("../view/HomeUI.fxml"));
+		Scene homeUIScene = new Scene(homeUIView);
 		
 		Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
 		
-		window.setScene(homeViewScene);
+		
+		window.setScene(homeUIScene);
 		window.show();
 	}
 }

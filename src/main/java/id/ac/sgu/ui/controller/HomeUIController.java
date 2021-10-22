@@ -9,6 +9,7 @@ import id.ac.sgu.core.Controller;
 import id.ac.sgu.core.Runner;
 import id.ac.sgu.core.World;
 import id.ac.sgu.core.Sensor.TimerSensor;
+import id.ac.sgu.ui.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +59,8 @@ public class HomeUIController implements Initializable {
 			logWindow.show();
 			break;
 		case "settingsButton":
-			System.out.println("Go to settings page!");
+			AlertBox ab = new AlertBox();
+			ab.display("Feature WIP", "This Feature is still WIP");
 			break;
 		default:
 			break;

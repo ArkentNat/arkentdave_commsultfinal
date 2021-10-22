@@ -23,7 +23,6 @@ public class LogController implements Initializable {
 	public void handleButtonClick(ActionEvent event) throws IOException {
 		final Node source = (Node) event.getSource();
 		String buttonID = source.getId();
-		System.out.println(buttonID);
 		switch(buttonID) {
 		
 		case "NavigationBackButton":
@@ -43,7 +42,7 @@ public class LogController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle arg1) {
-		logTextArea.setText("Hello There");
+		//Initialize Log Read
 		
 	}
 }

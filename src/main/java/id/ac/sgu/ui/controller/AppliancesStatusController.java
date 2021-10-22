@@ -14,7 +14,6 @@ public class AppliancesStatusController {
 	public void handleButtonClick(ActionEvent event) throws IOException {
 		final Node source = (Node) event.getSource();
 		String buttonID = source.getId();
-		System.out.println(buttonID);
 		switch(buttonID) {
 		case "AddAppliancesButton":
 			AlertBox ab = new AlertBox();
