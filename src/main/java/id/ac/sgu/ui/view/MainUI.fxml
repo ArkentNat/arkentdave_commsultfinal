@@ -19,7 +19,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="127.0" prefWidth="600.0">
                <children>
-                  <Label text="Homey" textFill="#f7f7f7">
+                  <Label text="Homy" textFill="#f7f7f7">
                      <font>
                         <Font name="Fira Code Regular" size="52.0" />
                      </font>

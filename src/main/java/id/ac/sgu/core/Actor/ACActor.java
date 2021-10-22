@@ -1,9 +1,5 @@
 package id.ac.sgu.core.Actor;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.time.LocalTime;
-
 public class ACActor {
 
     public String detect(double temp){
