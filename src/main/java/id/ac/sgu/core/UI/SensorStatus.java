@@ -1,6 +1,7 @@
 package id.ac.sgu.core.UI;
 
 import java.awt.Font;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -9,7 +10,12 @@ import java.time.LocalTime;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
 import id.ac.sgu.core.Actor.ACActor;
 import id.ac.sgu.core.Actor.BlindActor;
 
@@ -23,25 +29,44 @@ public class SensorStatus implements PropertyChangeListener{
     private BlindActor bc = new BlindActor();
 
     public SensorStatus() {
-        frame = new JFrame();
-        frame.setTitle("Homy");
-        frame.setVisible(true);
-        frame.setLayout(new FlowLayout());
-        frame.setSize(960,480);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         
         title = new JLabel ("Current Time : " + currentTimeString);
         title.setBounds(450,10, 200, 100);
         Font labelFont = title.getFont();
         title.setFont(new Font(labelFont.getName(), Font.PLAIN, 20));
-        frame.add(title);
+
+        
+        JLabel acLabel = new JLabel("Air Conditioner: ");
+        acLabel.setBounds(20,100, 100,20);
+
+        
+        JPanel middlePanel=new JPanel();
+        //middlePanel.setBorder(new TitledBorder(new EtchedBorder(), "Log Area"));
+        middlePanel.setBounds(250,80,550,400);
         
         logTextArea = new JTextArea(50,50);
-        logTextArea.setBounds(450,40, 200,100);
+        //logTextArea.setBounds(350,100, 450,200);
         logTextArea.setVisible(true);
-        logTextArea.setText("Hello");
         logTextArea.setEditable(false);
-        frame.add(logTextArea);
+        logTextArea.setLineWrap(true);
+        
+        JScrollPane scrollPane = new JScrollPane(logTextArea);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(550,400));
+        
+        middlePanel.add(scrollPane);
+        
+        frame = new JFrame();
+        frame.setTitle("Homy");
+        frame.setVisible(true);
+        frame.setLayout(null);
+        frame.setSize(960,680);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.add(acLabel);
+        frame.add(title);
+        frame.add(middlePanel);
         
 
         
@@ -63,11 +88,11 @@ public class SensorStatus implements PropertyChangeListener{
         } 
         else if (evt.getPropertyName() == "wind"){
             // setWind((double) evt.getNewValue());
-            logData("Wind: " + evt.getNewValue() + " kph");
+            logData("\nWind: " + evt.getNewValue() + " kph");
         } else {
             // setBlinder((LocalTime) evt.getNewValue());
             setCurrentTimeString((LocalTime) evt.getNewValue());
-            logData("Time: " + evt.getNewValue() + " || BLINDER STATUS: " + bc.detect((LocalTime)evt.getNewValue()));
+            logData("\nTime: " + evt.getNewValue() + " || BLINDER STATUS: " + bc.detect((LocalTime)evt.getNewValue()) + "\n\n");
         }        
     }
 
