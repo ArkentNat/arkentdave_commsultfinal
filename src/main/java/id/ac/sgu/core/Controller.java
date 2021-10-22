@@ -11,12 +11,6 @@ import id.ac.sgu.core.Actor.BlindActor;
 import id.ac.sgu.core.Sensor.TemperatureSensor;
 import id.ac.sgu.core.Sensor.TimerSensor;
 import id.ac.sgu.core.Sensor.WindSensor;
-<<<<<<< HEAD
-import id.ac.sgu.ui.controller.HomeUIController;
-=======
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
->>>>>>> core/Development
 
 public class Controller implements PropertyChangeListener {
     private TemperatureSensor ts;
@@ -30,10 +24,6 @@ public class Controller implements PropertyChangeListener {
     private String acStatus;
     private String blinderStatus;
     DecimalFormat df = new DecimalFormat("#.#");
-    private HomeUIController hUI;
-
-    @FXML
-    private Label currentTime;
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -67,13 +57,7 @@ public class Controller implements PropertyChangeListener {
         } else {
             System.out.println("Timer Controller: " + tms.getTime() + " || " + bc.detect(tms.getTime()));
             System.out.println("_____________________________________________\n");
-<<<<<<< HEAD
             setTime(tms.getTime());
-            hUI.setText(tms.getTime().toString());
-=======
-            //currentTime.setText(tms.getTime().toString());
-            setTime(tms.getTime());
->>>>>>> core/Development
             setBlinderStatus(bc.detect(tms.getTime()));
         }
         
@@ -125,8 +109,4 @@ public class Controller implements PropertyChangeListener {
 
     
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> core/Development
