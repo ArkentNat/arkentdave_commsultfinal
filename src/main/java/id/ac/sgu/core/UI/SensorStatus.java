@@ -5,11 +5,22 @@
  */
 package id.ac.sgu.core.UI;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DecimalFormat;
+import java.time.LocalTime;
+
+import id.ac.sgu.core.Actor.ACActor;
+import id.ac.sgu.core.Actor.BlindActor;
+
 /**
  *
  * @author user
  */
-public class SensorStatus extends javax.swing.JPanel {
+public class SensorStatus extends javax.swing.JPanel implements PropertyChangeListener {
+    DecimalFormat df = new DecimalFormat("#.#");
+    private ACActor ac = new ACActor();
+    private BlindActor bc = new BlindActor();
 
     /**
      * Creates new form SensorStatus
@@ -241,4 +252,31 @@ public class SensorStatus extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName() == "temperature"){
+            setAC((double) evt.getNewValue());
+        } 
+        else if (evt.getPropertyName() == "wind"){
+            setWind((double) evt.getNewValue());
+        } else {
+            setBlinder((LocalTime) evt.getNewValue());
+        }        
+    }
+
+    public void setAC(double newTemperature){
+        jLabel6.setText(ac.detect(newTemperature));
+        jTextArea1.setText("Temperature: " + newTemperature + " C || AC STATUS: " + ac.detect(newTemperature));
+    }
+
+    public void setBlinder(LocalTime time) {
+        jLabel7.setText(bc.detect(time));
+        jLabel1.setText("Time: " + time.toString() + " || BLINDER STATUS: " + bc.detect(time));
+        jLabel1.setText("____________________________________________________________");
+
+    }
+
+    public void setWind(double wind) {
+        jTextArea1.setText("Wind: " + wind + " kph");
+    }
 }
