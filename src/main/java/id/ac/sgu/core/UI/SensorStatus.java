@@ -20,14 +20,16 @@ import id.ac.sgu.core.Actor.ACActor;
 import id.ac.sgu.core.Actor.BlindActor;
 
 import java.text.DecimalFormat;
+import java.awt.Color;
 
 
 public class SensorStatus implements PropertyChangeListener{
+	
     JFrame frame;
     JTextArea logTextArea;
     JLabel title;
-    JLabel acLabel;
-    JLabel blindLabel;
+    JLabel acLabelStatus;
+    JLabel blindLabelStatus;
     private String currentTimeString;
     private ACActor ac = new ACActor();
     private BlindActor bc = new BlindActor();
@@ -41,12 +43,15 @@ public class SensorStatus implements PropertyChangeListener{
         Font labelFont = title.getFont();
         title.setFont(new Font(labelFont.getName(), Font.PLAIN, 20));
         
-        acLabel = new JLabel("Air Conditioner: ");
+        JLabel acLabel = new JLabel("Air Conditioner: ");
         acLabel.setBounds(20,100, 170,20);
+        acLabelStatus = new JLabel();
+        acLabelStatus.setBounds(120,100, 170,20);
 
-        blindLabel = new JLabel("Blind Window: ");
+        JLabel blindLabel = new JLabel("Blind Window: ");
         blindLabel.setBounds(20,140,170,20);
-
+        blindLabelStatus = new JLabel();
+        blindLabelStatus.setBounds(120,140, 170,20);
         
         JPanel middlePanel=new JPanel();
         //middlePanel.setBorder(new TitledBorder(new EtchedBorder(), "Log Area"));
@@ -72,9 +77,11 @@ public class SensorStatus implements PropertyChangeListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.add(acLabel);
+        frame.add(acLabelStatus);
         frame.add(title);
         frame.add(middlePanel);
         frame.add(blindLabel);
+        frame.add(blindLabelStatus);
         
     }
     
@@ -90,14 +97,25 @@ public class SensorStatus implements PropertyChangeListener{
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName() == "temperature"){
             logData("Temperature: " + df.format(evt.getNewValue()) + " C || AC STATUS: " + ac.detect((double)evt.getNewValue()));
-            acLabel.setText("AC Status: " + ac.detect((double)evt.getNewValue()));
+            acLabelStatus.setText(ac.detect((double)evt.getNewValue()));
+            if(acLabelStatus.getText() == "AC ON") {
+            	acLabelStatus.setForeground(Color.GREEN);
+            } else {
+            	acLabelStatus.setForeground(Color.RED);
+            }
         } 
         else if (evt.getPropertyName() == "wind"){
             logData("\nWind: " + df.format(evt.getNewValue()) + " kph");
         } else {
             setCurrentTimeString((LocalTime) evt.getNewValue());
             logData("\nTime: " + evt.getNewValue() + " || BLINDER STATUS: " + bc.detect((LocalTime)evt.getNewValue()) + "\n\n");
-            blindLabel.setText("Blind Status: " + bc.detect((LocalTime)evt.getNewValue()));
+            blindLabelStatus.setText(bc.detect((LocalTime)evt.getNewValue()));
+            if(blindLabelStatus.getText() == "Blind Opened") {
+            	blindLabelStatus.setForeground(Color.GREEN);
+            } else {
+            	blindLabelStatus.setForeground(Color.RED);
+            }
+            
         }        
     }
 }
