@@ -68,11 +68,7 @@ public class HomeUIController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Runner runner = new Runner();
-		World world = runner.getWorld();
-		Controller controller = runner.getController();
-		TimerSensor tms = new TimerSensor(LocalTime.of(0, 0));
-		currentTime.setText(world.getTime().toString());	
+		currentTime.setText("Current Time");	
 	}
 	
 	public Label getCurrentTimeLabel() {
